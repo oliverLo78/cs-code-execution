@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thread of Execution JS Call Stack Diagram - Basketball Example</title>
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="assets/style.css"></link>
   </head>
   
   <body>
@@ -18,27 +16,168 @@
         <h2>Open the Console</h2>
 
         <!-- Optional: show the code snippet above the diagram -->
-        <pre style="font-size: 0.75rem; background:#111; color:#eee; padding:0.75rem 1rem; border-radius:8px; overflow:auto;">
-          // 1) Where is Basketball stored? 
-          // Global execution context (GEC)
-          const Basketball = 'he shoots';
-          // 2) Where is shootThree stored?
-          // Global execution context (GEC)
-          const shootThree = score => {
-            // 4) When is score assigned a value? Where is this value stored?
-            const makeShot = swish => {
-              console.log(`The game was exiciting ${Basketball},  ${score}`);
+        <pre style="
+        font-size: 0.75rem;
+         background:#111; 
+         color:#eee; 
+         padding:0.75rem 1rem; 
+         border-radius:8px; 
+         overflow:auto;
+         font-size: 0.85rem;">
+            // Global scope
+            const Basketball = 'he shoots';
+
+            const shootThree = score => {
+
+              const makeShot = swish => {
+                console.log(`The game was exciting ${Basketball}, ${score}`);
+              }
+
+              makeShot(shootThree);
             }
 
-            // 6) What happens in the following statement?
-            makeShot(shootThree);
-          }
-
-          // 3) What happens in the following statement?
-          if (confirm("Do you want to play basketball?")) {
-            shootThree(3);
-          }
+            if (confirm("Do you want to play basketball?")) {
+              shootThree(3);
+            }
         </pre>
-    <script src="./assets/js/script.js"></script>
-  </body>
+
+        <hr style="margin:1.5rem 0;">
+
+        <h3>📌 Execution Context Diagram (Step-By-Step)</h3>
+
+        <div style="margin-bottom:1rem;">
+          <strong>1) Variable: <code>Basketball</code></strong><br>
+          Stored in the <strong>Global Execution Context (GEC)</strong> because it is declared at the top level.
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <strong>2) Function: <code>shootThree</code></strong><br>
+          Also stored in the <strong>Global Execution Context</strong>.
+      </div>
+
+        <div class="steps">
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="stack">
+            <div class="frame global">
+              <div class="frame-title">Global EC</div>
+              <small>
+                <code>Basketball = 'he shoots'</code><br />
+                <code>shootThree</code> bound (function)<br />
+                waiting on <code>confirm(...)</code>
+              </small>
+            </div>
+          </div>
+          <div class="caption">
+            1. Global execution context is created; bindings stored in GEC.
+          </div>
+        </div>
+
+        <div class="arrow-step">→</div>
+
+        <!-- Step 2 -->
+         <div class="step">
+           <div class="stack">
+             <div class="frame global">
+              <div class="frame-title">Global EC</div>
+              <small>
+                <code>confirm(...)</code> has returned<br />
+                 condition is <code>true</code><br />
+                 calling <code>shootThree(3)</code>
+              </small>
+              </div>
+            <div class="frame shootThree">
+              <div class="frame-title">shootThree EC</div>
+                <small>
+                  parameter <code>score = 3</code><br />
+                  local <code>makeShot</code> declared (function)
+                </small>
+              </div>
+            </div>
+            <div class="caption">
+              2. <code>shootThree(3)</code> is invoked; new function execution context created.
+            </div>
+          </div>
+
+      <div class="arrow-step">→</div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="stack">
+          <div class="frame global">
+            <div class="frame-title">Global EC</div>
+            <small>
+              <code>Basketball</code>, <code>shootThree</code> in GEC
+            </small>
+          </div>
+          <div class="frame shootThree">
+            <div class="frame-title">shootThree EC</div>
+            <small>
+              <code>score = 3</code><br />
+              <code>makeShot</code> defined<br />
+              calling <code>makeShot(shootThree)</code>
+            </small>
+          </div>
+          <div class="frame makeShot">
+            <div class="frame-title">makeShot EC</div>
+            <small>
+              parameter <code>swish = shootThree</code> (a function)<br />
+              uses <code>Basketball</code> (from GEC)<br />
+              uses <code>score</code> (from <code>shootThree</code> EC)<br />
+              executes <code>console.log(...)</code>
+            </small>
+          </div>
+        </div>
+        <div class="caption">
+          3. <code>makeShot</code> is on top of the stack; closure over outer scopes is used.
+        </div>
+      </div>
+
+      <div class="arrow-step">→</div>
+
+       <!-- Step 4 -->
+      <div class="step">
+        <div class="stack">
+          <div class="frame global">
+            <div class="frame-title">Global EC</div>
+            <small>
+              waiting for <code>shootThree(3)</code> to finish
+            </small>
+          </div>
+          <div class="frame shootThree">
+            <div class="frame-title">shootThree EC</div>
+            <small>
+              <code>makeShot</code> has returned<br />
+              <code>shootThree</code> finishes
+            </small>
+          </div>
+        </div>
+        <div class="caption">
+          4. <code>makeShot</code> EC is popped; control returns to <code>shootThree</code>.
+        </div>
+      </div>
+
+      <div class="arrow-step">→</div>
+
+      <!-- Step 5 -->
+      <div class="step">
+        <div class="stack">
+          <div class="frame global">
+            <div class="frame-title">Global EC</div>
+            <small>
+              if-block is done<br />
+              script has reached the end<br />
+              (job can now complete)
+            </small>
+          </div>
+        </div>
+        <div class="caption">
+          5. <code>shootThree</code> EC is popped; only Global EC remains, then the job completes.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets/js/script.js"></script>
+</body>
 </html>
