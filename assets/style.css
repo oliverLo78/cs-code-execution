@@ -1,9 +1,12 @@
 :root {
-      --frame-border: #333;
       --global-bg: #e6edff;
       --shoot-bg: #e5f8f0;
       --make-bg: #fff2dd;
+      --global-stroke: #1d4ed8;
+      --shoot-stroke: #059669;
+      --make-stroke: #f97316;
       --text-muted: #4b5563;
+      --panel-bg: #ffffff;
     }
 
     * {
@@ -11,10 +14,11 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #fafafa;
       margin: 0;
       padding: 2rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f3f4f6;
+      color: #111827;
     }
 
     h1 {
@@ -23,108 +27,229 @@
       margin-bottom: 0.5rem;
     }
 
-    .stack-diagram {
-      max-width: 1000px;
+    .layout {
+      max-width: 1100px;
       margin: 0 auto;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      padding: 1.5rem 2rem 2rem;
-      box-sizing: border-box;
-    }
-
-    .stack-diagram h2 {
-      margin-top: 0;
-      margin-bottom: 0.25rem;
-      font-size: 1.4rem;
-    }
-
-    .stack-diagram p.subtitle {
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .steps {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.75rem;
       align-items: flex-start;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
-    .step {
-      min-width: 140px;
-      flex: 0 0 auto;
-      text-align: center;
+    @media (max-width: 880px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .stack {
-      display: flex;
-      flex-direction: column-reverse; /* bottom of stack at bottom visually */
-      align-items: stretch;
-      gap: 0.4rem;
-      min-height: 180px;
-      padding: 0.5rem;
-      border-radius: 8px;
-      background: #f8f8f8;
-      box-sizing: border-box;
+    .panel {
+      background: var(--panel-bg);
+      border-radius: 12px;
+      padding: 1rem 1.25rem 1.25rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      border: 1px solid #e5e7eb;
     }
 
-    .frame {
-      border: 2px solid var(--frame-border);
-      border-radius: 8px;
-      padding: 0.35rem 0.5rem;
-      font-size: 0.8rem;
-      text-align: left;
-      background: white;
-      box-sizing: border-box;
+    .panel h2 {
+      font-size: 1rem;
+      margin: 0 0 0.4rem;
     }
 
-    .frame.global {
-      background: var(--global-bg);
-    }
-
-    .frame.shootThree {
-      background: var(--shoot-bg);
-    }
-
-    .frame.makeShot {
-      background: var(--make-bg);
-    }
-
-    .frame-title {
-      font-weight: 600;
-      margin-bottom: 0.15rem;
-    }
-
-    .frame small {
-      display: block;
-      font-size: 0.7rem;
+    .panel p {
+      margin: 0 0 0.75rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      line-height: 1.2;
     }
 
-    .caption {
-      margin-top: 0.5rem;
+    pre.code-block {
+      margin: 0;
+      background: #0b1120;
+      color: #e5e7eb;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      overflow-x: auto;
+      line-height: 1.4;
+    }
+
+    .stack-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .stack-header h2 {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .step-indicator {
       font-size: 0.8rem;
-      color: #333;
+      color: var(--text-muted);
     }
 
-    .arrow-step {
-      flex: 0 0 auto;
-      align-self: center;
-      font-size: 2rem;
-      line-height: 1;
-      color: #999;
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.75rem;
+      margin-top: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    @media (max-width: 800px) {
-      .steps {
-        gap: 0.75rem;
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+    }
+
+    .legend-swatch.global {
+      background: var(--global-bg);
+      border-color: var(--global-stroke);
+    }
+
+    .legend-swatch.shootThree {
+      background: var(--shoot-bg);
+      border-color: var(--shoot-stroke);
+    }
+
+    .legend-swatch.makeShot {
+      background: var(--make-bg);
+      border-color: var(--make-stroke);
+    }
+
+    .stack-and-text {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.9rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 880px) {
+      .stack-and-text {
+        flex-direction: column;
       }
-      .step {
-        min-width: 120px;
-      }
+    }
+
+    .svg-wrapper {
+      flex: 0 0 260px;
+      background: #f9fafb;
+      border-radius: 10px;
+      border: 1px dashed #d1d5db;
+      padding: 0.5rem;
+      position: relative;
+    }
+
+    .stack-label {
+      position: absolute;
+      top: 8px;
+      left: 14px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+    }
+
+    .step-details {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+    }
+
+    .step-description {
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .controls {
+      margin-top: auto;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding-top: 0.4rem;
+    }
+
+    .controls button {
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: background 0.15s ease, transform 0.08s ease, box-shadow 0.15s ease;
+    }
+
+    .controls button:hover {
+      background: #e5e7eb;
+    }
+
+    .controls button:active {
+      transform: translateY(1px);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.12);
+    }
+
+    .controls button.primary {
+      background: #2563eb;
+      border-color: #1d4ed8;
+      color: #f9fafb;
+    }
+
+    .controls button.primary:hover {
+      background: #1d4ed8;
+    }
+
+    .controls button:disabled {
+      opacity: 0.35;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* SVG frame states */
+    .frame {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .frame.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .frame rect {
+      transition: stroke-width 0.2s ease, filter 0.2s ease;
+    }
+
+    .frame.top rect {
+      stroke-width: 3;
+      filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    }
+
+    .frame text {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .step-note {
+      font-size: 0.75rem;
+      color: #9ca3af;
     }
