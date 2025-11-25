@@ -1,22 +1,22 @@
-// 1) Where is carNoise stored?
+// 1) Where is Basketball stored?
 // Global execution context (GEC)
 const Basketball = 'he shoots';
-// 2) Where is goFast stored?
+// 2) Where is shootThree stored?
 // Global execution context (GEC)
 const shootThree = score => {
-  // 4) When is speed assigned a value? Where is this value stored?
-  // When goFast is invoked, the argument of the function is assigned to the parameter, speed, 
-  // in the functional execution context of goFast
-  // 5) Where is makeNoise stored?
-  // makeNoise is stored in the function execution context of goFast
+  // 4) When is score assigned a value? Where is this value stored?
+  // When shootThree is invoked, the argument of the function is assigned to the parameter, score, 
+  // in the functional execution context of shootThree
+  // 5) Where is makeShot stored?
+  // makeShot is stored in the function execution context of ShootThree
   const makeShot = swish => {
-    // carNoise is then assigned to sound in the function execution context of makeNoise
+    // basketball is then assigned to swish in the function execution context of makeShot
     // console.log is then placed on the call stack which then logs the statement
     console.log(`The game was exiciting ${Basketball},  ${score}`);
   }
 
   // 6) What happens in the following statement?
-  // makeNoise is placed on the call stack which creates a new function execution context
+  // makeShot is placed on the call stack which creates a new function execution context
   makeShot(shootThree);
 }
 
