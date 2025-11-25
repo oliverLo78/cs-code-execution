@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thread of Execution JS Call Stack Diagram - Basketball Example</title>
+    <style>
+
+    </style>
+  </head>
+  
+  <body>
+      <div class="stack-diagram">
+        <h1>JavaScript Call Stack – Basketball Example</h1>
+        <p class="subtitle">
+          Call stack snapshots for the code using <code>Basketball</code>, <code>shootThree</code>, and <code>makeShot</code>.
+        </p>
+        <h2>Open the Console</h2>
+
+        <!-- Optional: show the code snippet above the diagram -->
+        <pre style="font-size: 0.75rem; background:#111; color:#eee; padding:0.75rem 1rem; border-radius:8px; overflow:auto;">
+          // 1) Where is Basketball stored? 
+          // Global execution context (GEC)
+          const Basketball = 'he shoots';
+          // 2) Where is shootThree stored?
+          // Global execution context (GEC)
+          const shootThree = score => {
+            // 4) When is score assigned a value? Where is this value stored?
+            const makeShot = swish => {
+              console.log(`The game was exiciting ${Basketball},  ${score}`);
+            }
+
+            // 6) What happens in the following statement?
+            makeShot(shootThree);
+          }
+
+          // 3) What happens in the following statement?
+          if (confirm("Do you want to play basketball?")) {
+            shootThree(3);
+          }
+        </pre>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
