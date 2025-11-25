@@ -1,9 +1,13 @@
 :root {
       --frame-border: #333;
-      --global-bg: #f4f4ff;
-      --shoot-bg: #e7f8f0;
-      --make-bg: #fff3e0;
-      --text-muted: #555;
+      --global-bg: #e6edff;
+      --shoot-bg: #e5f8f0;
+      --make-bg: #fff2dd;
+      --text-muted: #4b5563;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -11,6 +15,12 @@
       background: #fafafa;
       margin: 0;
       padding: 2rem;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
     }
 
     .stack-diagram {
