@@ -53,6 +53,47 @@
         <div style="margin-bottom:1rem;">
           <strong>2) Function: <code>shootThree</code></strong><br>
           Also stored in the <strong>Global Execution Context</strong>.
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <strong>3) Running the <code>if(confirm(...))</code> line</strong><br>
+          • <code>confirm()</code> is handled by the browser (Web API).<br>
+          • When the user clicks <strong>OK</strong>, JavaScript continues and calls <code>shootThree(3)</code>.
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <strong>4) Calling <code>shootThree(3)</code></strong><br>
+          A new <strong>function execution context</strong> is created.<br>
+          The parameter <code>score</code> receives the value <strong>3</strong>.
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <strong>5) Inside <code>shootThree</code>: declaring <code>makeShot</code></strong><br>
+          <code>makeShot</code> is stored inside the <strong>execution context of shootThree</strong>.
+        </div>
+
+        <div style="margin-bottom:1rem;">
+         <strong>6) Calling <code>makeShot(shootThree)</code></strong><br>
+          A new execution context is created for <code>makeShot</code>.<br>
+          The parameter <code>swish</code> is assigned the function <code>shootThree</code>.<br>
+        <br>
+          Inside <code>makeShot</code>, JavaScript looks outward through scopes:<br>
+          • Grabs <code>Basketball</code> from Global<br>
+          • Grabs <code>score</code> from <code>shootThree</code>’s context<br>
+          Then runs <code>console.log(...)</code> using those values.
+        </div>
+
+         <hr style="margin:1.5rem 0;">
+
+        <h3>📍 Summary</h3>
+        <p>
+          This code demonstrates:<br>
+          • Global execution context<br>
+          • Function execution contexts<br>
+          • How arguments get assigned during function calls<br>
+          • How inner functions access outer variables (closure)<br>
+          • How Web APIs like <code>confirm()</code> return control to JavaScript
+        </p>
       </div>
 
         <div class="steps">

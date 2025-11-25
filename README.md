@@ -11,6 +11,7 @@ Refer to the documentation:
 * Due to the visual nature of this exercise, it might be helpful to sketch the execution context and allocation of variables.
 
 ---
+## Screenshots
 
 ## 🏆 Bonus
 
