@@ -17,6 +17,10 @@ code notes <img width="2396" height="1313" alt="Screenshot 2025-11-25 105059" sr
 
 Diagram walkthrough <img width="2514" height="1368" alt="Screenshot 2025-11-25 105149" src="https://github.com/user-attachments/assets/6e57108e-71fb-4c02-87af-c1cdf9da40ba" />
 
+## Site is live 
+
+https://oliverlo78.github.io/cs-code-execution/
+
 ## 🏆 Bonus
 
 If you have completed this activity, work through the following challenge with your partner to further your knowledge:
