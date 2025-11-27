@@ -26,4 +26,17 @@ if(confirm("Do you want to play basketball?")) {
   shootThree(3);
 }
 
+  function copyCode(btn) {
+    const pre = btn.nextElementSibling; // <pre> element
+    const text = pre.innerText;
 
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add("copied");
+      btn.innerText = "Copied!";
+
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.innerText = "Copy";
+      }, 1600);
+    });
+  }
