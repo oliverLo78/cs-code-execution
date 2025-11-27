@@ -11,13 +11,13 @@ Refer to the documentation:
 * Due to the visual nature of this exercise, it might be helpful to sketch the execution context and allocation of variables.
 
 ---
-## Screenshots
+## 📸 Screenshots
 
 code notes <img width="2396" height="1313" alt="Screenshot 2025-11-25 105059" src="https://github.com/user-attachments/assets/2865362f-9aa1-43ee-8bfc-8ad8b2242829" />
 
 Diagram walkthrough <img width="2514" height="1368" alt="Screenshot 2025-11-25 105149" src="https://github.com/user-attachments/assets/6e57108e-71fb-4c02-87af-c1cdf9da40ba" />
 
-## Site is live 
+## 🌐 Site is live 
 
 https://oliverlo78.github.io/cs-code-execution/
 
